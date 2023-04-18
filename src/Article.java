@@ -5,6 +5,7 @@ public class Article {
   private final String department;
   private double purchasePrice;
   private double retailPrice;
+  private double margin;
 
 
   public Article(int articleNumber,
@@ -12,13 +13,15 @@ public class Article {
                  String category,
                  String department,
                  double purchasePrice,
-                 double retailPrice) {
+                 double retailPrice,
+                 double margin) {
     this.articleNumber = articleNumber;
     this.articleName = articleName;
     this.category = category;
     this.department = department;
     this.purchasePrice = purchasePrice;
     this.retailPrice = retailPrice;
+    this.margin = Double.parseDouble(String.format("%.3f",((retailPrice - purchasePrice)/retailPrice)));
   }
 
   public int getArticleNumber() {
@@ -53,4 +56,7 @@ public class Article {
     this.retailPrice = retailPrice;
   }
 
+  public double getMargin() {
+    return margin;
+  }
 }
