@@ -1,23 +1,22 @@
 import java.time.LocalDate;
+import java.util.Date;
 
-public record Transaction(LocalDate dateOfTransaction, Article articleName, Article articleNumber,
+public record Transaction(LocalDate dateOfTransaction, int articleNumber, String articleName,
                           int quantity) {
 
   public Transaction(LocalDate dateOfTransaction,
-                     Article articleName,
-                     Article articleNumber,
+                     Article article,
                      int quantity) {
-    this.dateOfTransaction = dateOfTransaction;
-    this.articleNumber = getArticleNumber();
-    this.articleName = getArticleName();
-    this.quantity = quantity;
+    this(dateOfTransaction, article.getArticleNumber(), article.getArticleName(), quantity);
   }
 
-  public Article getArticleName() {
+
+
+  public String getArticleName() {
     return articleName;
   }
 
-  public Article getArticleNumber() {
+  public int getArticleNumber() {
     return articleNumber;
   }
 
@@ -27,5 +26,15 @@ public record Transaction(LocalDate dateOfTransaction, Article articleName, Arti
 
   public LocalDate getDateOfTransaction() {
     return dateOfTransaction;
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+        dateOfTransaction +
+        ", " + articleNumber + '\'' +
+        ", " + articleName + '\'' +
+        ", " + quantity +
+        '}';
   }
 }
